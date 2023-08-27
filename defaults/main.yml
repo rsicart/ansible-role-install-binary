@@ -1,0 +1,8 @@
+---
+# defaults file for install-binary
+
+# install_binary_url: "<mandatory>"
+# install_binary_binary_filenames: "[<mandatory>]"
+install_binary_download_folder: "~/Downloads/install_binary"
+install_binary_bin_folder: "~/bin"
+install_binary_clean_enabled: false

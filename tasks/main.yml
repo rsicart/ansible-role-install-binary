@@ -1,0 +1,59 @@
+---
+# tasks file for install-binary
+
+- name: Create download folder
+  ansible.builtin.file:
+    path: "{{ install_binary_download_folder }}"
+    state: directory
+    mode: '0750'
+
+- name: Download compressed release file
+  ansible.builtin.get_url:
+    url: "{{ install_binary_url | mandatory }}"
+    dest: "{{ install_binary_download_folder }}"
+    mode: '0660'
+  register: install_binary_downloaded_artifact
+
+- name: Decompress file
+  ansible.builtin.unarchive:
+    remote_src: true
+    src: "{{ install_binary_downloaded_artifact.dest }}"
+    dest: "{{ install_binary_download_folder }}"
+  register: install_binary_decompressed_artifact
+
+- name: Find binary locations
+  ansible.builtin.find:
+    paths: "{{ install_binary_download_folder }}"
+    file_type: file
+    depth: 2
+    recurse: true
+    patterns: "{{ install_binary_binary_filenames }}"
+  register: install_binary_found_binaries
+
+- name: Copy binaries to destination folder
+  ansible.builtin.copy:
+    remote_src: true
+    src: "{{ item.path }}"
+    dest: "{{ install_binary_bin_folder }}"
+  loop: "{{ install_binary_found_binaries.files }}"
+
+- name: Remove download folder
+  ansible.builtin.file:
+    path: "{{ install_binary_download_folder }}"
+    state: absent
+  when: install_binary_clean_enabled
+
+- name: Debug
+  debug:
+    msg: "Downloaded artifact name: {{ install_binary_downloaded_artifact.dest }}"
+    verbosity: 1
+
+- name: Debug
+  debug:
+    msg: "Decompressed artifact files: {{ install_binary_decompressed_artifact.dest }}"
+    verbosity: 1
+
+- name: Debug
+  debug:
+    msg: "Found binaries: {{ install_binary_found_binaries.files }}"
+    verbosity: 1

@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  connection: local
+  #remote_user: root
+  tasks:
+    - name: Install velero
+      include_role:
+        name: install-binary
+      vars:
+        install_binary_url: https://github.com/vmware-tanzu/velero/releases/download/v1.11.1/velero-v1.11.1-linux-amd64.tar.gz
+        install_binary_binary_filenames: [velero]
+    - name: Install kubectx
+      include_role:
+        name: install-binary
+      vars:
+        install_binary_url: https://github.com/ahmetb/kubectx/releases/download/v0.9.5/kubectx_v0.9.5_linux_x86_64.tar.gz
+        install_binary_binary_filenames: [kubectx]
+    #- name: Install kubens
+    #  include_role: install-binary
+    #  vars:
+    #    install_binary_url: https://github.com/ahmetb/kubectx/releases/download/v0.9.5/kubens_v0.9.5_linux_x86_64.tar.gz
+    #    install_binary_binary_filenames: [kubens]
