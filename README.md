@@ -49,7 +49,7 @@ N/A
 Example Playbook
 ----------------
 
-See `tests/test.yml`
+See [tests](tests/test.yml)
 
 License
 -------
