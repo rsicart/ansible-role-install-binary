@@ -1,4 +1,4 @@
-Role Name
+Ansible Role: install-binary
 =========
 
 Downloads, decompresses and copies a binary from a remote location into a destination folder.
