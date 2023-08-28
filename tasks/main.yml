@@ -35,6 +35,7 @@
     remote_src: true
     src: "{{ item.path }}"
     dest: "{{ install_binary_bin_folder }}"
+    mode: '0740'
   loop: "{{ install_binary_found_binaries.files }}"
 
 - name: Remove download folder

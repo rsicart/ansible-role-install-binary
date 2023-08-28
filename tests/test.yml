@@ -15,7 +15,14 @@
         install_binary_url: https://github.com/ahmetb/kubectx/releases/download/v0.9.5/kubectx_v0.9.5_linux_x86_64.tar.gz
         install_binary_binary_filenames: [kubectx]
     - name: Install kubens
-      include_role: install-binary
+      include_role:
+        name: install-binary
       vars:
         install_binary_url: https://github.com/ahmetb/kubectx/releases/download/v0.9.5/kubens_v0.9.5_linux_x86_64.tar.gz
         install_binary_binary_filenames: [kubens]
+    - name: Install kubent
+      include_role:
+        name: install-binary
+      vars:
+        install_binary_url: https://github.com/doitintl/kube-no-trouble/releases/download/0.7.0/kubent-0.7.0-linux-amd64.tar.gz
+        install_binary_binary_filenames: [kubent]
