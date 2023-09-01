@@ -32,3 +32,9 @@
       vars:
         install_binary_url: https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.1.1/kustomize_v5.1.1_linux_amd64.tar.gz
         install_binary_binary_filenames: [kustomize]
+    - name: Install vault
+      include_role:
+        name: install-binary
+      vars:
+        install_binary_url: https://releases.hashicorp.com/vault/1.14.2/vault_1.14.2_linux_amd64.zip
+        install_binary_binary_filenames: [vault]
