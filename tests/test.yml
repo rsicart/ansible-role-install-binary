@@ -44,3 +44,9 @@
       vars:
         install_binary_url: https://github.com/birdayz/kaf/releases/download/v0.2.6/kaf_0.2.6_Linux_arm64.tar.gz
         install_binary_binary_filenames: [kaf]
+    - name: Install stern
+      include_role:
+        name: install-binary
+      vars:
+        install_binary_url: https://github.com/stern/stern/releases/download/v1.26.0/stern_1.26.0_linux_amd64.tar.gz
+        install_binary_binary_filenames: [stern]
