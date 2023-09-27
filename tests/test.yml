@@ -50,3 +50,9 @@
       vars:
         install_binary_url: https://github.com/stern/stern/releases/download/v1.26.0/stern_1.26.0_linux_amd64.tar.gz
         install_binary_binary_filenames: [stern]
+    - name: Install eget
+      include_role:
+        name: install-binary
+      vars:
+        install_binary_url: https://github.com/zyedidia/eget/releases/download/v1.3.3/eget-1.3.3-linux_amd64.tar.gz
+        install_binary_binary_filenames: [eget]
