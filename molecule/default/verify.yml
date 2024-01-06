@@ -1,0 +1,30 @@
+- name: Fail if molecule group is missing
+  hosts: localhost
+  tasks:
+    - name: Print some info
+      ansible.builtin.debug:
+        msg: "{{ groups }}"
+
+    - name: Assert group existence
+      ansible.builtin.assert:
+        that: "'molecule' in groups"
+        fail_msg: |
+          molecule group was not found inside inventory groups: {{ groups }}
+
+- name: Verify
+  hosts: molecule
+  # We disable gather facts because it would fail due to our container not
+  # having python installed. This will not prevent use from running 'raw'
+  # commands. Most molecule users are expected to use containers that already
+  # have python installed in order to avoid notable delays installing it.
+  gather_facts: false
+  tasks:
+    - name: Check if vault file exists
+      ansible.builtin.stat:
+        path: "/root/Downloads/install_binary/vault"
+      register: result
+    - name: Fail if the file does not exist
+      ansible.builtin.assert:
+        that: result.stat.exists
+        success_msg: "File exists"
+        fail_msg: "File does not exist"
