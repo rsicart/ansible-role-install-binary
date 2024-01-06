@@ -1,5 +1,6 @@
 galaxy_info:
-  author: R.Sicart
+  role_name: install_binary
+  author: rsicart
   description: Downloads and setups release binaries from github
 
   # If the issue tracker for your role is not on github, uncomment the
